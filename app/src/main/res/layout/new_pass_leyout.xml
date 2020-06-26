@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/NewPassLayout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Введите пароль"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/editPass"
+        android:hint="Пароль"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_blue_bright"
+            android:background="@android:color/transparent"
+            android:gravity="bottom|start"
+            android:layout_marginStart="20dp"
+            android:text="Отменить"
+            android:id="@+id/newPassCancelBT"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_blue_bright"
+            android:background="@android:color/transparent"
+            android:gravity="bottom|end"
+            android:text="Случайный"
+            android:id="@+id/newPassRandomBT"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_blue_bright"
+            android:background="@android:color/transparent"
+            android:gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Ok"
+            android:id="@+id/newPassOkBT"/>
+    </LinearLayout>
+
+
+</LinearLayout>

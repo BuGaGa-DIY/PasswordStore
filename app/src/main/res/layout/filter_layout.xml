@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Содержание пароля"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="20dp"
+            android:text="Длинна:"/>
+        <SeekBar
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="18"
+            android:min="6"
+            android:progress="9"
+            android:id="@+id/maxLength"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:id="@+id/maxSizeTextBox"
+            android:layout_marginEnd="40dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"/>
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="a..z"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/switchaz"
+        android:checked="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"/>
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A..Z"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/switchAZ"
+        android:checked="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"/>
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0..9"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/switch09"
+        android:checked="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"/>
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="!../"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/switchSpecial"
+        android:checked="true"
+        />
+
+    <Button
+        android:id="@+id/filterOkBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Ok"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

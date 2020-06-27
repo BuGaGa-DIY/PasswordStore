@@ -104,7 +104,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="40dp"
         android:id="@+id/switchSpecial"
-        android:checked="true"
+        android:checked="false"
         />
 
     <Button

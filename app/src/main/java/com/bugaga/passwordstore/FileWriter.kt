@@ -9,7 +9,7 @@ import java.io.FileWriter
 class FileWriter(val context: Context) {
 
 
-    fun addPass(name:String,pass:String){
+    fun addPass(name:String,pass:String,login:String){
         var all = readAll()
         val path = context.getExternalFilesDir("pass")
         if (path != null && !path.exists()) path.mkdir()
@@ -18,13 +18,18 @@ class FileWriter(val context: Context) {
             if (all.contains(name)){
                 val writer = FileWriter(file,false)
                 val index1 = all.indexOf(name)+name.length+1
-                val tmp = all.substring(0,index1) + pass+";"+all.substring(index1)
+                val index2 = all.substring(index1).indexOf(":") + index1+1
+                var tmpPass = myAES.encrypt(pass)
+                tmpPass = tmpPass?.substring(0,tmpPass.indexOf("\n"))
+                val tmp = all.substring(0,index1) + login +":"+tmpPass+";"+all.substring(index2)
                 writer.write(tmp)
                 writer.flush()
                 writer.close()
             }else{
                 val writer = FileWriter(file,true)
-                writer.append("$name:$pass;\n")
+                var tmpPass = myAES.encrypt(pass)
+                tmpPass = tmpPass?.substring(0,tmpPass.indexOf("\n"))
+                writer.append("$name:$login:$tmpPass;\n")
                 writer.flush()
                 writer.close()
             }
@@ -58,12 +63,16 @@ class FileWriter(val context: Context) {
         return list
     }
 
-    fun getPass(name: String):String{
+    fun getLoginPass(name: String):String{
         val all = readAll()
         if (all.contains(name)){
-            val startInd = all.indexOf(name)+name.length + 1
-            val endInd = all.substring(startInd).indexOf(";") + startInd
-            return all.substring(startInd,endInd)
+            var startInd = all.indexOf(name)+name.length + 1
+            var endInd = all.substring(startInd).indexOf(":") + startInd
+            var str = all.substring(startInd,endInd) + "|"
+            startInd = endInd + 1
+            endInd = all.substring(startInd).indexOf(";") + startInd
+            str += myAES.decrypt(all.substring(startInd,endInd))
+            return str
         }else return ""
     }
 

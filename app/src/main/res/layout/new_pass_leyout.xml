@@ -13,6 +13,13 @@
         android:textColor="@android:color/black"
         android:textSize="25sp"
         android:gravity="center"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:hint="Логин (не обязятерьно)"
+        android:id="@+id/editLogin"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -32,9 +39,9 @@
             android:layout_weight="1"
             android:textColor="@android:color/holo_blue_bright"
             android:background="@android:color/transparent"
-            android:gravity="bottom|start"
+            android:gravity="center|start"
             android:layout_marginStart="20dp"
-            android:text="Отменить"
+            android:text="  Отменить"
             android:id="@+id/newPassCancelBT"/>
         <Button
             android:layout_width="wrap_content"
@@ -42,7 +49,7 @@
             android:layout_weight="1"
             android:textColor="@android:color/holo_blue_bright"
             android:background="@android:color/transparent"
-            android:gravity="bottom|end"
+            android:gravity="center|end"
             android:text="Случайный"
             android:id="@+id/newPassRandomBT"/>
         <Button
@@ -51,10 +58,9 @@
             android:layout_weight="1"
             android:textColor="@android:color/holo_blue_bright"
             android:background="@android:color/transparent"
-            android:gravity="bottom|end"
+            android:gravity="center|end"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Ok"
+            android:text="Ok    "
             android:id="@+id/newPassOkBT"/>
     </LinearLayout>
 

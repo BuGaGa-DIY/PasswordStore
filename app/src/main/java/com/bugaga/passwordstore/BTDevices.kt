@@ -55,11 +55,11 @@ class BTDevices: AppCompatActivity() {
             }
         }
 
-
-
         ScanBT.setOnClickListener {
             val myBT = myBluetooth(applicationContext, Handler())
-            myBT.execute()
+            myBT.sendData("Hi_im_here")
+            myBT.close()
+            //Test msgmmyBT.execute()
         }
 
     }

@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
+    private var myBt : myBluetooth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -169,6 +170,12 @@ class MainActivity : AppCompatActivity() {
 
             biometricPrompt.authenticate(promptInfo)
         }
+
+        passList.setOnItemLongClickListener { parent, view, position, id ->
+
+            myBt?.sendData(passNameArray[position])
+            return@setOnItemLongClickListener(true)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -185,5 +192,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        myBt = myBluetooth(applicationContext, Handler())
+    }
+
+    override fun onPause() {
+        super.onPause()
+        myBt?.close()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        myBt?.close()
     }
 }

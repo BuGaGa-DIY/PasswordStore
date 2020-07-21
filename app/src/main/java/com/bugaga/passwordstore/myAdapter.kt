@@ -4,11 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
-import android.widget.TextView
+import android.widget.*
+import java.util.*
 
-class myAdapter(val context:Context,val dataList: List<String>):BaseAdapter() {
+class myAdapter(val context:Context,val dataList: List<String>, val sender: View.OnClickListener):BaseAdapter() {
     private val mInflator: LayoutInflater
     init {
         this.mInflator = LayoutInflater.from(context)
@@ -16,9 +15,10 @@ class myAdapter(val context:Context,val dataList: List<String>):BaseAdapter() {
 
     private class ViewHolder(row: View?){
         var name: TextView? = null
-
+        var sendBt : Button? = null
         init {
             name = row?.findViewById(R.id.adapterNameText)
+            sendBt = row?.findViewById(R.id.sendToBt)
         }
     }
 
@@ -35,6 +35,10 @@ class myAdapter(val context:Context,val dataList: List<String>):BaseAdapter() {
         }
 
         viewHolder.name?.text = dataList[position]
+        /*viewHolder.sendBt?.setOnClickListener {
+            Toast.makeText(context,dataList[position],Toast.LENGTH_SHORT).show()
+        }*/
+        viewHolder.sendBt?.setOnClickListener(sender)
         return view as View
     }
 

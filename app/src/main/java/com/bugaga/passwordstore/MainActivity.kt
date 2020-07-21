@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
@@ -40,8 +41,13 @@ class MainActivity : AppCompatActivity() {
         passBT = findViewById(R.id.AddPassBT)
 
 
-        var passNameArray = FileWriter(applicationContext).getAllNames()
-        val passAdapter = myAdapter(applicationContext, passNameArray)
+        val sender = object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                Toast.makeText(this@MainActivity,"Lol",Toast.LENGTH_SHORT).show()
+            }
+        }
+        val passNameArray = FileWriter(applicationContext).getAllNames()
+        val passAdapter = myAdapter(applicationContext, passNameArray,sender)
         passList.adapter = passAdapter
         passBT.setOnClickListener {
             val builder = AlertDialog.Builder(this)

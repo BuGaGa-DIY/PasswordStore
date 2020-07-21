@@ -90,4 +90,8 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
         }
 
     }
+
+    fun clase(){
+        btSocket?.close()
+    }
 }

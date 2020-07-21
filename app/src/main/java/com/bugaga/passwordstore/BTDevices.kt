@@ -65,7 +65,4 @@ class BTDevices: AppCompatActivity() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }

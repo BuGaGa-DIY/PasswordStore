@@ -52,6 +52,7 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
             Output().WriteLine("Socket created")
             btSocket?.connect()
             Output().WriteLine("Socket connected")
+            handler.sendMessage(Message.obtain(handler,3))
             return true
         }catch (ex : IOException){
             Output().WriteLine("socket opening fail: ${ex.message}")
@@ -74,11 +75,12 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
         }
     }
 
-    fun isReady():Boolean{
+    fun isReady():Int{
         if (btSocket != null ) {
-            return btSocket!!.isConnected
+            //return btSocket!!.isConnected
+            return btAdapter!!.state//not informative
         }
-        else return false
+        else return 0
     }
 
     fun close(){

@@ -50,7 +50,11 @@ class MainActivity : AppCompatActivity() {
                 3->{
                     toolbarText.setTextColor(ContextCompat.getColor(this,R.color.colorConnected))
                     toolbarText.text = "Connected"
-                    Toast.makeText(this,"Connected to BT device",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this,"Connected to BT device",Toast.LENGTH_SHORT).show()
+                }
+                5->{
+                    toolbarText.setTextColor(ContextCompat.getColor(this,R.color.colorDisconnected))
+                    toolbarText.text = "Disconnected"
                 }
             }
 
@@ -218,7 +222,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
         if (!_isRunning)_isRunning = true
-        thread.start()
+        //thread.start()
     }
 
     override fun onPause() {

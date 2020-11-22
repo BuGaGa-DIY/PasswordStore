@@ -47,5 +47,16 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"/>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/FreeEnterFAB"
+        android:text="Free Enter"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"/>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.os.Looper
 import android.os.Message
 import android.speech.tts.TextToSpeech
 import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.bugaga.passwordstore.utils.Output
 import com.bugaga.passwordstore.utils.myFingerPrint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -70,7 +72,9 @@ class MainActivity : AppCompatActivity() {
 
         passAdapter = myAdapter(applicationContext, passNameArray)
         passList.adapter = passAdapter
-
+        FreeEnterFAB.setOnClickListener {
+            startFreeEnter()
+        }
         passBT.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Введите названпя для пароля")
@@ -114,6 +118,30 @@ class MainActivity : AppCompatActivity() {
             getAccess.show()
             return@setOnItemLongClickListener(true)
         }
+    }
+
+    private fun startFreeEnter() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Free Enter")
+        var edit = EditText(applicationContext)
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s != null)myBt?.sendData(s[start].toString())
+                //edit.text = Editable.Factory.getInstance().newEditablef
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                //if (s != null)myBt?.sendData(s.toString())
+                s?.clear()
+                //edit.text.clear()
+            }
+        })
+        builder.setView(edit)
+        builder.show()
     }
 
     fun sendDataToBT(passName: String){

@@ -1,11 +1,16 @@
 package com.bugaga.passwordstore
 
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.AsyncTask
 import android.os.Handler
 import android.os.Message
+import android.widget.Toast
 import com.bugaga.passwordstore.utils.Output
 import java.io.IOException
 import java.lang.Exception
@@ -18,8 +23,39 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
     var btSocket : BluetoothSocket? = null
     init {
         //connect()
+        val bluetoothIntentFilter = IntentFilter()
+        bluetoothIntentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+        bluetoothIntentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+
+        val brReceiver = object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent != null) {
+                    val action = intent.action
+                    when(action) {
+                        BluetoothDevice.ACTION_ACL_CONNECTED -> {
+                            Toast.makeText(context, "Device connected", Toast.LENGTH_SHORT).show()
+                            Output().WriteLine("Device Connected in Receiver")
+                            handler.sendMessage(Message.obtain(handler,3))
+                        }
+                        BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
+                            Toast.makeText(context, "Device disconnected", Toast.LENGTH_SHORT)
+                                .show()
+                            Output().WriteLine("Device Disconnected in Receiver")
+                            handler.sendMessage(Message.obtain(handler,5))
+                        }
+                    }
+                }
+            }
+
+        }
+
+        context.registerReceiver(brReceiver,bluetoothIntentFilter)
+
+
         execute()
     }
+
+
 
     @Suppress("UNREACHABLE_CODE")
     override fun doInBackground(vararg params: Void?): Void? {
@@ -52,7 +88,7 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
             Output().WriteLine("Socket created")
             btSocket?.connect()
             Output().WriteLine("Socket connected")
-            handler.sendMessage(Message.obtain(handler,3))
+            //handler.sendMessage(Message.obtain(handler,3))
             return true
         }catch (ex : IOException){
             Output().WriteLine("socket opening fail: ${ex.message}")
@@ -62,7 +98,7 @@ class myBluetooth(var context: Context, var handler: Handler) : AsyncTask<Void,V
 
     fun sendData(data : String){
         if (btSocket == null){
-            handler.sendMessage(Message.obtain(handler,3))
+            handler.sendMessage(Message.obtain(handler,4))
             return
         }
         else{
